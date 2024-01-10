@@ -21,7 +21,9 @@ No modules.
 | [aws_instance.web](https://registry.terraform.io/providers/hashicorp/aws/5.31.0/docs/resources/instance) | resource |
 | [aws_instance.web1](https://registry.terraform.io/providers/hashicorp/aws/5.31.0/docs/resources/instance) | resource |
 | [aws_instance.web2](https://registry.terraform.io/providers/hashicorp/aws/5.31.0/docs/resources/instance) | resource |
+| [aws_security_group.sg-webserver](https://registry.terraform.io/providers/hashicorp/aws/5.31.0/docs/resources/security_group) | resource |
 | [aws_ami.ubuntu](https://registry.terraform.io/providers/hashicorp/aws/5.31.0/docs/data-sources/ami) | data source |
+| [aws_vpc.default](https://registry.terraform.io/providers/hashicorp/aws/5.31.0/docs/data-sources/vpc) | data source |
 
 ## Inputs
 
