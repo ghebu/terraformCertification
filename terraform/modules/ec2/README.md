@@ -19,12 +19,12 @@ No modules.
 | Name | Type |
 |------|------|
 | [aws_instance.web](https://registry.terraform.io/providers/hashicorp/aws/5.31.0/docs/resources/instance) | resource |
+| [aws_ami.ubuntu](https://registry.terraform.io/providers/hashicorp/aws/5.31.0/docs/data-sources/ami) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_ami"></a> [ami](#input\_ami) | The AMI Id to be used for the creation of EC2 instance | `string` | `"ami-0005e0cfe09cc9050"` | no |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | n/a | `string` | `"t3.micro"` | no |
 
 ## Outputs
@@ -32,4 +32,4 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_debug"></a> [debug](#output\_debug) | n/a |
-| <a name="output_public ip"></a> [public ip](#output\_public ip) | n/a |
+| <a name="output_public_ip"></a> [public\_ip](#output\_public\_ip) | n/a |
