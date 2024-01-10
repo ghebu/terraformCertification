@@ -3,12 +3,11 @@
 
 
 resource "aws_instance" "web" {
-  for_each      = toset(["name1", "name2", "name3"])
-  ami           = "ami-0005e0cfe09cc9050"
-  instance_type = "t3.micro"
+  ami           = var.ami 
+  instance_type = var.instance_type 
 
   tags = {
-    Name = each.key
+    Name = "Hello world" 
   }
 
 }
