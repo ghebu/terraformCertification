@@ -36,5 +36,6 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_debug"></a> [debug](#output\_debug) | n/a |
+| <a name="output_for_example"></a> [for\_example](#output\_for\_example) | n/a |
 | <a name="output_public_ip_addresses"></a> [public\_ip\_addresses](#output\_public\_ip\_addresses) | n/a |
+| <a name="output_splat_expression_example"></a> [splat\_expression\_example](#output\_splat\_expression\_example) | n/a |

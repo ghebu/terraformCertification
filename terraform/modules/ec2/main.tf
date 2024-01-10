@@ -34,3 +34,6 @@ resource "aws_instance" "web2" {
   ami           = var.ami
   instance_type = var.instance_type
 }
+
+
+##SPLAT Expresisons can be seen in the outputs as well
