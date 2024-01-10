@@ -29,4 +29,7 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_debug"></a> [debug](#output\_debug) | n/a |
+| <a name="output_public ip"></a> [public ip](#output\_public ip) | n/a |
