@@ -53,7 +53,7 @@ resource "aws_route_table" "public_subnet" {
 
 
   route {
-    cidr_block = "10.0.0.0/16"
+    cidr_block = aws_vpc.milestone.cidr_block
     gateway_id = "local"
   }
 
@@ -81,7 +81,7 @@ resource "aws_route_table" "private" {
 
 
   route {
-    cidr_block = "10.0.0.0/16"
+    cidr_block = aws_vpc.milestone.cidr_block
     gateway_id = "local"
   }
 
@@ -97,15 +97,7 @@ resource "aws_route_table_association" "private" {
 }
 
 
-##Creating an instance in the public subnet
-resource "aws_network_interface" "bastion" {
-  subnet_id = aws_subnet.milestone.1.id
-
-  tags = {
-    Name = "primary_network_interface"
-  }
-}
-
+##Creating an instance in the public subnet and the security groups that allows the curl requests
 
 resource "aws_instance" "bastion" {
   ami           = "ami-0005e0cfe09cc9050"
