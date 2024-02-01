@@ -5,26 +5,26 @@ locals {
 
 ##Creating a vpc
 resource "aws_vpc" "milestone" {
-  cidr_block = "10.0.0.0/16"
+  cidr_block = var.vpc_cidr_block
 
   tags = {
     Name = "MilestoneVPC"
   }
 }
 
-##Creating 1x public subnet and 2x private subnets
+# ##Creating 1x public subnet and 2x private subnets
 resource "aws_subnet" "milestone" {
   for_each                = var.subnets_map
   vpc_id                  = aws_vpc.milestone.id
   cidr_block              = "10.0.${each.key}.0/24"
-  map_public_ip_on_launch = each.value.1
+  map_public_ip_on_launch = each.value.public_ip
 
   tags = {
-    Name = "Milestone-${each.value.0}"
+    Name = "Milestone-${each.value.subnet}"
   }
 }
 
-##Creating the internet gateway
+# ##Creating the internet gateway
 resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.milestone.id
 
@@ -33,7 +33,7 @@ resource "aws_internet_gateway" "gw" {
   }
 }
 
-##Creating the NAT GW and elastic IP
+# ##Creating the NAT GW and elastic IP
 resource "aws_eip" "nat" {}
 
 resource "aws_nat_gateway" "ngw" {
@@ -42,7 +42,7 @@ resource "aws_nat_gateway" "ngw" {
 }
 
 
-##Creating the route table for the public subnet
+# ##Creating the route table for the public subnet
 resource "aws_route_table" "public_subnet" {
   vpc_id = aws_vpc.milestone.id
 
@@ -52,7 +52,7 @@ resource "aws_route_table" "public_subnet" {
   }
 
 
-  route {
+  route { 
     cidr_block = aws_vpc.milestone.cidr_block
     gateway_id = "local"
   }
@@ -70,7 +70,7 @@ resource "aws_route_table_association" "public" {
 
 
 
-####Creating the route table for the private subnet
+# ####Creating the route table for the private subnet
 resource "aws_route_table" "private" {
   vpc_id = aws_vpc.milestone.id
 
@@ -97,10 +97,10 @@ resource "aws_route_table_association" "private" {
 }
 
 
-##Creating an instance in the public subnet and the security groups that allows the curl requests
+# ##Creating an instance in the public subnet and the security groups that allows the curl requests
 
 resource "aws_instance" "bastion" {
-  ami           = "ami-0005e0cfe09cc9050"
+  ami           = var.ami
   instance_type = "t3.micro"
   subnet_id = aws_subnet.milestone.1.id
   associate_public_ip_address = true
@@ -133,6 +133,7 @@ resource "aws_security_group" "bastion" {
   description = "Allow TLS inbound traffic"
   vpc_id      = aws_vpc.milestone.id
 
+#dynamic block
   dynamic "ingress" {
     for_each = local.inbound_ports
     content { 
