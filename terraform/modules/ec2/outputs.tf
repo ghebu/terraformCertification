@@ -13,5 +13,7 @@ output "public_ip_addresses" {
 
 
 output "splat_expression_example" {
-  value = [for name in var.instance_names : aws_instance.web[name].public_ip]
+  value = aws_instance.web[*]
+  #For example
+  #value = [for name in var.instance_names : aws_instance.web[name].public_ip]
 }
