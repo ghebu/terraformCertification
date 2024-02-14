@@ -18,3 +18,5 @@ output "remote_state_outputs" {
 output "remote_state_subnet" { 
     value = data.terraform_remote_state.remote.outputs.everything.debug
 }
+
+
